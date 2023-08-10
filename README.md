@@ -1,5 +1,10 @@
-# Lovelace-mushroom-button-card
-The intention is to build a collection of [button-card](https://github.com/custom-cards/button-card) templates to match the theme of the [mushroom-cards](https://github.com/piitaya/lovelace-mushroom) for the cards not present in lovelace-mushroom, or cards adding some features/customization.  
+# Lovelace-mushroom-button-cards
+
+Forked from [Lovelace-mushroom-button-card](https://github.com/hcoohb/lovelace-mushroom-button-card) repository to expand the collection with custom cards suitable for my needs. But maybe someone find them usefull too.
+
+### Original description:
+
+>The intention is to build a collection of [button-card](https://github.com/custom-cards/button-card) templates to match the theme of the [mushroom-cards](https://github.com/piitaya/lovelace-mushroom) for the cards not present in lovelace-mushroom, or cards adding some features/customization.  
 > Note that a key difference with the nice [UI Lovelace Minimalist](https://github.com/UI-Lovelace-Minimalist/UI/) is that you can still use the lovelace UI editor.  
 > Primarily for my personnal use but sharing in case it helps someone.
 
@@ -13,6 +18,40 @@ The intention is to build a collection of [button-card](https://github.com/custo
 3. In the dashboard, add a `Manual card` and place the usage code provided below tweaking as necessary.
 
 ### Cards
+
+#### 1.   Irrigation card for HunterX
+
+![image](images/irrigation_idle.png)
+![image](images/irrigation_active.png)
+
+<details><summary>See usage</summary>
+  
+> Requirements:
+> - Button-card
+> 
+> Manual card code:
+> ```yaml
+> type: custom:button-card
+> template: mushroom_irrigation
+> entity: timer.irrigation_time_remaining
+> ```
+>
+> Variables:
+> - `toggle_switch`: switch.irrigate_lawn
+> - `active_zone`: input_text.irrigation_active_zone
+> - `response`: input_text.zone_action_result
+> 
+> Manual card code - example with variables:
+> ```yaml
+> type: custom:button-card
+> template: mushroom_irrigation
+> entity: timer.irrigation_time_remaining
+> variables:
+>   toggle_switch: switch.irrigate_lawn
+>   active_zone: input_text.irrigation_active_zone
+>   response: input_text.zone_action_result
+> ```
+</details>
 
 #### 1.  🌡 Climate card
 

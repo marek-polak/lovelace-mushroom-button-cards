@@ -360,3 +360,89 @@ button_card_templates:
           type: custom:button-card
           template: mushroom_climate_ctrl
           entity: '[[[ return entity.entity_id ]]]'
+  debug_text:
+    show_name: true
+    show_icon: false
+    tap_action:
+      action: none
+    styles:
+      card:
+        - box-shadow: none
+        - margin: 12px 0 0 0
+        - padding: 0
+        - border-radius: 0
+        - border-width: 0
+        - '--mdc-ripple-press-opacity': 0
+      grid:
+        - grid-template-areas: i n
+        - grid-template-columns: min-content
+        - grid-template-rows: min-content
+  mushroom_irrigation:
+    template: mushroom_card
+    variables:
+      toggle_switch: ''
+      response: ''
+      active_zone: ''
+    name: |
+      [[[
+            if (entity.state =='idle')
+              return "Závlaha neaktívna";
+            else
+              return `Zavlažujem zónu ${states[variables.active_zone].state}`;
+      ]]]
+    icon: |
+      [[[
+            if (entity.state =='idle'){ return "mdi:water-pump-off";}
+            return "mdi:water-pump";
+      ]]]
+    show_state: '[[[ return (entity.state == "active");]]]'
+    triggers_update: all
+    styles:
+      grid:
+        - grid-template-areas: '"i n switch" "i s switch" "i debug debug"'
+        - grid-template-columns: min-content 1fr min-content
+        - grid-template-rows: min-content min-content
+    state:
+      - value: idle
+        operator: '!='
+        styles:
+          img_cell:
+            - background-color: rgba(139,195,74,0.2)
+          icon:
+            - color: rgb(var(--rgb-accent-color))
+    custom_fields:
+      switch:
+        card:
+          type: custom:button-card
+          template: mushroom_button
+          entity: '[[[ return variables.toggle_switch; ]]]'
+          show_name: false
+          icon: >-
+            [[[ return (entity.state!="active") ? "mdi:clock-start" :
+            "mdi:stop-circle-outline" ]]]
+          tap_action:
+            action: toggle
+          variables:
+            background_color: rgba(255, 87, 34, 0.2)
+            color: '[[[ return (entity.state!="active") ? "orange" : "red" ]]]'
+      debug:
+        card:
+          type: custom:button-card
+          entity: '[[[ return variables.response; ]]]'
+          show_name: false
+          show_icon: false
+          show_state: true
+          tap_action:
+            action: none
+          styles:
+            card:
+              - box-shadow: none
+              - filter: opacity(50%)
+              - border-width: 0
+              - '--mdc-ripple-press-opacity': 0
+            state:
+              - font-size: 12px
+            grid:
+              - grid-template-areas: i s
+              - grid-template-columns: min-content
+              - grid-template-rows: min-content
