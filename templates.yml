@@ -11,7 +11,7 @@ button_card_templates:
         - font-size: 25px
         - font-weight: bold
         - color: rgb(105, 119, 133)
-        - letter-spacing: '-0.01em'
+        - letter-spacing: "-0.01em"
     tap_action:
       action: none
   mushroom_card:
@@ -34,7 +34,7 @@ button_card_templates:
               - border-radius: 50%
               - position: absolute
               - left: 24px
-              - top: '-2px'
+              - top: "-2px"
               - height: 16px
               - width: 16px
               - border: 2px solid var(--card-background-color)
@@ -47,7 +47,7 @@ button_card_templates:
     styles:
       card:
         - padding: 12px
-        - '--mdc-ripple-press-opacity': 0
+        - "--mdc-ripple-press-opacity": 0
       grid:
         - grid-template-areas: '"i n" "i s"'
         - grid-template-columns: min-content 1fr
@@ -69,17 +69,19 @@ button_card_templates:
         - align-self: center
         - font-size: 14px
         - font-weight: bold
+        - margin-top: 4px
         - color: var(--primary-text-color)
       state:
         - justify-self: flex-start
         - align-self: center
         - font-weight: bolder
         - font-size: 12px
+        - padding-top: 3px
         - color: rgb(114,114,114)
   mushroom_timer:
     template: mushroom_card
     variables:
-      input_datetime_id: ''
+      input_datetime_id: ""
     styles:
       grid:
         - grid-template-areas: '"i n time_input" "i s time_input"'
@@ -87,7 +89,7 @@ button_card_templates:
         - grid-template-rows: min-content min-content
     state:
       - value: idle
-        operator: '!='
+        operator: "!="
         styles:
           img_cell:
             - background-color: rgba(139,195,74,0.2)
@@ -111,7 +113,7 @@ button_card_templates:
         card:
           type: entities
           entities:
-            - entity: '[[[ return variables.input_datetime_id ]]]'
+            - entity: "[[[ return variables.input_datetime_id ]]]"
           card_mod:
             style:
               .: |
@@ -120,10 +122,10 @@ button_card_templates:
                   box-shadow: none !important;
                   border: none;
                 }
-              '#states': |
+              "#states": |
                 #states { padding:0; }
                 #states> div { margin:0; }
-              '#states hui-input-datetime-entity-row':
+              "#states hui-input-datetime-entity-row":
                 $:
                   hui-generic-entity-row:first-of-type:
                     $: |
@@ -142,13 +144,13 @@ button_card_templates:
         - padding: 0
         - border-radius: 12px
         - border-width: 0
-        - background-color: '[[[ return variables.background_color ]]]'
-        - color: '[[[ return variables.color ]]]'
+        - background-color: "[[[ return variables.background_color ]]]"
+        - color: "[[[ return variables.color ]]]"
       name:
         - font-weight: bold
       icon:
         - width: 20px
-        - color: '[[[ return variables.color ]]]'
+        - color: "[[[ return variables.color ]]]"
   mushroom_climate_ctrl:
     show_name: false
     show_icon: false
@@ -161,7 +163,7 @@ button_card_templates:
         - padding: 0
         - border-radius: 0
         - border-width: 0
-        - '--mdc-ripple-press-opacity': 0
+        - "--mdc-ripple-press-opacity": 0
       grid:
         - grid-template-areas: >-
             "btn_less target btn_more rest cool_mode heat_mode dry_mode
@@ -210,7 +212,7 @@ button_card_templates:
         card:
           type: custom:button-card
           template: mushroom_button
-          name: '-'
+          name: "-"
           variables:
             background_color: >-
               [[[ return (entity.state!="heat") ? "rgb(213 235 254)" : "rgb(255,
@@ -222,8 +224,8 @@ button_card_templates:
             action: call-service
             service: climate.set_temperature
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
-              temperature: '[[[ return entity.attributes.temperature - 1 ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
+              temperature: "[[[ return entity.attributes.temperature - 1 ]]]"
       btn_more:
         card:
           type: custom:button-card
@@ -240,8 +242,8 @@ button_card_templates:
             action: call-service
             service: climate.set_temperature
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
-              temperature: '[[[ return entity.attributes.temperature + 1 ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
+              temperature: "[[[ return entity.attributes.temperature + 1 ]]]"
       cool_mode:
         card:
           type: custom:button-card
@@ -254,7 +256,7 @@ button_card_templates:
             action: call-service
             service: climate.set_hvac_mode
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
               hvac_mode: cool
       heat_mode:
         card:
@@ -268,7 +270,7 @@ button_card_templates:
             action: call-service
             service: climate.set_hvac_mode
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
               hvac_mode: heat
       dry_mode:
         card:
@@ -282,7 +284,7 @@ button_card_templates:
             action: call-service
             service: climate.set_hvac_mode
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
               hvac_mode: dry
       fan_mode:
         card:
@@ -293,7 +295,7 @@ button_card_templates:
             action: call-service
             service: climate.set_hvac_mode
             service_data:
-              entity_id: '[[[ return entity.entity_id ]]]'
+              entity_id: "[[[ return entity.entity_id ]]]"
               hvac_mode: fan_only
   mushroom_climate:
     template: mushroom_card
@@ -317,7 +319,7 @@ button_card_templates:
       action: call-service
       service: climate.set_hvac_mode
       service_data:
-        entity_id: '[[[ return entity.entity_id ]]]'
+        entity_id: "[[[ return entity.entity_id ]]]"
         hvac_mode: |
           [[[
                 if (entity.state =='off'){ return variables.default_hvac_mode; }
@@ -344,7 +346,7 @@ button_card_templates:
             - background-color: rgba(76, 175, 80,0.2)
           icon:
             - color: rgb(76, 175, 80)
-      - value: 'off'
+      - value: "off"
         styles:
           custom_fields:
             tmp_ctrl:
@@ -359,7 +361,7 @@ button_card_templates:
         card:
           type: custom:button-card
           template: mushroom_climate_ctrl
-          entity: '[[[ return entity.entity_id ]]]'
+          entity: "[[[ return entity.entity_id ]]]"
   debug_text:
     show_name: true
     show_icon: false
@@ -372,7 +374,7 @@ button_card_templates:
         - padding: 0
         - border-radius: 0
         - border-width: 0
-        - '--mdc-ripple-press-opacity': 0
+        - "--mdc-ripple-press-opacity": 0
       grid:
         - grid-template-areas: i n
         - grid-template-columns: min-content
@@ -380,31 +382,34 @@ button_card_templates:
   mushroom_irrigation:
     template: mushroom_card
     variables:
-      toggle_switch: ''
-      response: ''
-      active_zone: ''
+      timer: ""
+      response: ""
+      active_zone: ""
     name: |
       [[[
-            if (entity.state =='idle')
-              return "Závlaha neaktívna";
+            if (entity.state =='off')
+              return "Irrigation inactive";
             else
-              return `Zavlažujem zónu ${states[variables.active_zone].state}`;
+              return `Watering zone ${states[variables.active_zone].state}`;
+      ]]]
+    state_display: >
+      [[[ return `<ha-icon icon="mdi:message-text" style="width: 12px; height:
+      12px; color: var(--primary-font-color);"></ha-icon>: ` + 
+          states[variables.response].state;
       ]]]
     icon: |
       [[[
-            if (entity.state =='idle'){ return "mdi:water-pump-off";}
+            if (entity.state =='off'){ return "mdi:water-pump-off";}
             return "mdi:water-pump";
       ]]]
-    show_state: '[[[ return (entity.state == "active");]]]'
     triggers_update: all
     styles:
       grid:
-        - grid-template-areas: '"i n switch" "i s switch" "i debug debug"'
-        - grid-template-columns: min-content 1fr min-content
+        - grid-template-areas: '"i n timer switch" "i s timer switch"'
+        - grid-template-columns: min-content 1fr min-content min-content
         - grid-template-rows: min-content min-content
     state:
-      - value: idle
-        operator: '!='
+      - value: "on"
         styles:
           img_cell:
             - background-color: rgba(139,195,74,0.2)
@@ -415,23 +420,23 @@ button_card_templates:
         card:
           type: custom:button-card
           template: mushroom_button
-          entity: '[[[ return variables.toggle_switch; ]]]'
+          entity: "[[[ return entity.entity_id ]]]"
           show_name: false
           icon: >-
-            [[[ return (entity.state!="active") ? "mdi:clock-start" :
+            [[[ return (entity.state!="on") ? "mdi:clock-start" :
             "mdi:stop-circle-outline" ]]]
           tap_action:
             action: toggle
           variables:
             background_color: rgba(255, 87, 34, 0.2)
-            color: '[[[ return (entity.state!="active") ? "orange" : "red" ]]]'
-      debug:
+            color: '[[[ return (entity.state!="on") ? "orange" : "red" ]]]'
+      timer:
         card:
           type: custom:button-card
-          entity: '[[[ return variables.response; ]]]'
+          entity: "[[[ return variables.timer; ]]]"
           show_name: false
           show_icon: false
-          show_state: true
+          show_state: '[[[ return (entity.state == "on");]]]'
           tap_action:
             action: none
           styles:
@@ -439,10 +444,11 @@ button_card_templates:
               - box-shadow: none
               - filter: opacity(50%)
               - border-width: 0
-              - '--mdc-ripple-press-opacity': 0
+              - "--mdc-ripple-press-opacity": 0
+              - padding-right: 10px;
             state:
-              - font-size: 12px
+              - font-size: 18px
             grid:
-              - grid-template-areas: i s
+              - grid-template-areas: s
               - grid-template-columns: min-content
               - grid-template-rows: min-content
